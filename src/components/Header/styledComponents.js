@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   color: ${(props) => (props.isDark ? "white" : "black")};
   border-bottom: 1px solid ${(props) => (props.isDark ? "white" : "black")};
   width: 100%;
-  height: 70px;
+  height: 70px !important;
   display: flex;
   flex-direction: row;
   justify-content: center;
