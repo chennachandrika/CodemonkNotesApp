@@ -6,13 +6,10 @@ const themeSlice = createSlice({
     isDarkMode: true
   },
   reducers: {
-    changeToLightMode: (theme, action) => {
-      theme.isDarkMode = false;
-    },
-    changeToDarkMode: (theme, action) => {
-      theme.isDarkMode = true;
+    changeMode: (theme, action) => {
+      theme.isDarkMode = !theme.isDarkMode;
     }
   }
 });
-export const { changeToLightMode, changeToDarkMode } = themeSlice.actions;
+export const { changeMode } = themeSlice.actions;
 export default themeSlice.reducer;
