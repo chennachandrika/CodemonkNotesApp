@@ -17,13 +17,13 @@ const Header = () => {
     dispatch(changeMode());
   };
   return (
-    <HeaderContainer isDark={theme}>
+    <HeaderContainer isdark={theme ? 1 : 0}>
       <HeaderOptions>
-        <CustomLink isDark={theme} to="/">
+        <CustomLink isdark={theme ? 1 : 0} to="/">
           <Heading>CODEMONK</Heading>
         </CustomLink>
         <ModeImage
-          isDark={theme}
+          isdark={theme ? 1 : 0}
           onClick={changeTheme}
           src={theme ? LightMode : DarkMode}
         />

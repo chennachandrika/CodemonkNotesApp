@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  background-color: ${(props) => (props.isDark ? "black" : "white")};
-  color: ${(props) => (props.isDark ? "white" : "black")};
+  background-color: ${(props) => (props.isdark ? "black" : "white")};
+  color: ${(props) => (props.isdark ? "white" : "black")};
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@ export const AppCard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${(props) => (props.isDark ? "white" : "black")};
+  border: 1px solid ${(props) => (props.isdark ? "white" : "black")};
 `;
 
 export const AppName = styled.h4``;
