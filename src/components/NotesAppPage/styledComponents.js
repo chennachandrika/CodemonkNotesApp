@@ -72,3 +72,5 @@ export const ViewNotes = styled.div`
   margin-top: 30px;
   max-width: 1000px;
 `;
+
+export const Text = styled.p``;

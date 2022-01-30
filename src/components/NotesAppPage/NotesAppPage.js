@@ -11,7 +11,8 @@ import {
   ViewNotes,
   AddNoteForm,
   SubmitButton,
-  FormButtons
+  FormButtons,
+  Text
 } from "./styledComponents";
 
 const NotesAppPage = () => {
@@ -85,7 +86,7 @@ const NotesAppPage = () => {
           Close
         </SubmitButton>
       </FormButtons>
-      <p>{isRequesting && "Adding Your Note..."}</p>
+      <Text>{isRequesting && "Adding Your Note..."}</Text>
     </AddNoteForm>
   );
   return (
