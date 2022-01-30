@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const HeaderContainer = styled.div`
   background-color: ${(props) => (props.isdark ? "black" : "white")};
   color: ${(props) => (props.isdark ? "white" : "black")};
-  border-bottom: 1px solid ${(props) => (props.isDark ? "white" : "black")};
+  border-bottom: 1px solid ${(props) => (props.isdark ? "white" : "black")};
   width: 100%;
   height: 70px !important;
   display: flex;

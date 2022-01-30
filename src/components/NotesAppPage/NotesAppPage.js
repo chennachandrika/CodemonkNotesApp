@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header";
-import Plus from "../../assests/Plus.png";
+import NotesList from "../NotesList";
+import { noteAdded } from "../../store/notesReducer";
+
 import {
   AppContainer,
   NotesContainer,
   InputText,
   ViewNotes,
-  AddNoteCard,
-  AddIcon,
   AddNoteForm,
   SubmitButton,
   FormButtons
@@ -18,6 +18,7 @@ const NotesAppPage = () => {
   const [noteTitle, setNoteTitle] = useState("");
   const [noteText, setNoteText] = useState("");
   const [isFormVisible, setFormVisible] = useState(false);
+  const dispatch = useDispatch();
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
   const viewForm = () => {
     setFormVisible(true);
@@ -36,6 +37,15 @@ const NotesAppPage = () => {
   const addNoteToList = (event) => {
     event.preventDefault();
     setFormVisible(false);
+    const noteInfo = {
+      noteTitle,
+      noteText
+    };
+    if (noteTitle && noteText) {
+      dispatch(noteAdded({ title: JSON.stringify(noteInfo) }));
+    }
+    setNoteTitle("");
+    setNoteText("");
   };
   const renderAddNoteForm = () => (
     <AddNoteForm isDark={theme} onSubmit={addNoteToList}>
@@ -82,9 +92,7 @@ const NotesAppPage = () => {
       <NotesContainer>
         {renderAddNoteForm()}
         <ViewNotes>
-          <AddNoteCard isDark={theme ? 1 : 0}>
-            <AddIcon isDark={theme ? 1 : 0} src={Plus} />
-          </AddNoteCard>
+          <NotesList />
         </ViewNotes>
       </NotesContainer>
     </AppContainer>

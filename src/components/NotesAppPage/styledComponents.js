@@ -72,19 +72,3 @@ export const ViewNotes = styled.div`
   margin-top: 30px;
   max-width: 1000px;
 `;
-
-export const AddNoteCard = styled.div`
-  background-color: ${(props) => (props.isDark ? "black" : "white")};
-  color: ${(props) => (props.isDark ? "white" : "black")};
-  border: 1px solid ${(props) => (props.isDark ? "white" : "black")};
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const AddIcon = styled.img`
-  filter: invert(${(props) => (props.isDark ? 1 : 0)});
-`;

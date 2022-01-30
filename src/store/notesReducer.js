@@ -24,7 +24,7 @@ const slice = createSlice({
     noteAdded: (notes, action) => {
       notes.list.push({
         id: v4(),
-        title: JSON.parse(action.payload.noteInfo),
+        title: JSON.parse(action.payload.title),
         completed: false
       });
     },
