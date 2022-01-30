@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { removeNote, noteRemoved } from "../../store/notesReducer";
 import {
   NotesCard,
   Icon,
@@ -14,6 +15,10 @@ const NotesList = () => {
   const despatch = useDispatch();
   const notesList = useSelector((store) => store.entities.notes.list);
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
+  const deleteNote = (id) => () => {
+    console.log(id);
+    despatch(noteRemoved({ id: id }));
+  };
   const noNotesList = () => (
     <Text isDark={theme ? 1 : 0}>Notes you add appear here</Text>
   );
@@ -27,7 +32,11 @@ const NotesList = () => {
               <Text isDark={theme ? 1 : 0}>{note.title.noteText}</Text>
             </Content>
             <Options>
-              <Icon isDark={theme ? 1 : 0} src={Del} />
+              <Icon
+                onClick={deleteNote(note.id)}
+                isDark={theme ? 1 : 0}
+                src={Del}
+              />
             </Options>
           </NotesCard>
         ))}
@@ -41,6 +50,7 @@ const NotesList = () => {
       return noNotesList();
     }
   };
+  console.log(notesList);
   return <>{renderNotesList()}</>;
 };
 

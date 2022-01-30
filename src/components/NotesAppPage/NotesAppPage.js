@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header";
 import NotesList from "../NotesList";
-import { noteAdded } from "../../store/notesReducer";
+import { addNote } from "../../store/notesReducer";
 
 import {
   AppContainer,
@@ -20,6 +20,7 @@ const NotesAppPage = () => {
   const [isFormVisible, setFormVisible] = useState(false);
   const dispatch = useDispatch();
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
+  const isRequesting = useSelector((store) => store.entities.notes.loading);
   const viewForm = () => {
     setFormVisible(true);
   };
@@ -42,7 +43,7 @@ const NotesAppPage = () => {
       noteText
     };
     if (noteTitle && noteText) {
-      dispatch(noteAdded({ title: JSON.stringify(noteInfo) }));
+      dispatch(addNote({ title: JSON.stringify(noteInfo) }));
     }
     setNoteTitle("");
     setNoteText("");
@@ -84,6 +85,7 @@ const NotesAppPage = () => {
           Close
         </SubmitButton>
       </FormButtons>
+      <p>{isRequesting && "Adding Your Note..."}</p>
     </AddNoteForm>
   );
   return (

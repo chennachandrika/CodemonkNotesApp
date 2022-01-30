@@ -10,7 +10,7 @@ const slice = createSlice({
     lastFetch: null
   },
   reducers: {
-    notesDataRequested: (notes, action) => {
+    notesApiRequest: (notes, action) => {
       notes.loading = true;
     },
     notesDataReceived: (notes, action) => {
@@ -22,6 +22,7 @@ const slice = createSlice({
       notes.loading = false;
     },
     noteAdded: (notes, action) => {
+      notes.loading = false;
       notes.list.push({
         id: v4(),
         title: JSON.parse(action.payload.title),
@@ -30,7 +31,6 @@ const slice = createSlice({
     },
     noteRemoved: (notes, action) => {
       notes.list = notes.list.filter((note) => note.id !== action.payload.id);
-      return notes;
     }
   }
 });
@@ -38,7 +38,7 @@ const slice = createSlice({
 export const {
   noteAdded,
   noteRemoved,
-  notesDataRequested,
+  notesApiRequest,
   notesDataReceived,
   notesDataFailed
 } = slice.actions;
@@ -48,7 +48,7 @@ export const loadNotesData = () => (dispatch, getState) => {
   dispatch(
     actions.apiCallBegan({
       url: "https://jsonplaceholder.typicode.com/todos/",
-      onBegin: notesDataRequested.type,
+      onBegin: notesApiRequest.type,
       onSuccess: notesDataReceived.type,
       onFailure: notesDataFailed.type
     })
@@ -60,5 +60,17 @@ export const addNote = (Note) =>
     url: "https://jsonplaceholder.typicode.com/todos/",
     method: "post",
     data: Note,
-    onSuccess: noteAdded.type
+    onBegin: notesApiRequest.type,
+    onSuccess: noteAdded.type,
+    onFailure: notesDataFailed.type
+  });
+
+export const removeNote = (Note) =>
+  actions.apiCallBegan({
+    url: `https://jsonplaceholder.typicode.com/todos/Note`,
+    method: "delete",
+    data: Note,
+    onBegin: notesApiRequest.type,
+    onSuccess: noteRemoved.type,
+    onFailure: notesDataFailed.type
   });
