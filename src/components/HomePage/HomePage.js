@@ -13,13 +13,13 @@ import {
 const HomePage = () => {
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
   return (
-    <MainContainer isdark={theme}>
+    <MainContainer isdark={theme ? 1 : 0}>
       <Header />
       <ContentContainer>
         <HeadingOfPage>Hey!!! You Can Explore Apps Here!!!</HeadingOfPage>
         <AppsContainer>
-          <CustomLink isdark={theme} to="/notes-app">
-            <AppCard isdark={theme}>
+          <CustomLink isdark={theme ? 1 : 0} to="/notes-app">
+            <AppCard isdark={theme ? 1 : 0}>
               <AppName>Notes App</AppName>
             </AppCard>
           </CustomLink>

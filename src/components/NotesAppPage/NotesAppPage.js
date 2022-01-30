@@ -41,7 +41,7 @@ const NotesAppPage = () => {
     <AddNoteForm isDark={theme} onSubmit={addNoteToList}>
       <InputText
         isVisible={true}
-        isDark={theme}
+        isDark={theme ? 1 : 0}
         onClick={viewForm}
         onChange={onChangeNoteTitle}
         type="text"
@@ -49,7 +49,7 @@ const NotesAppPage = () => {
         placeholder={isFormVisible ? "Add Note Title" : "Add Your Note"}
       />
       <InputText
-        isDark={theme}
+        isDark={theme ? 1 : 0}
         isVisible={isFormVisible}
         onChange={onChangeNoteText}
         type="text"
@@ -60,14 +60,14 @@ const NotesAppPage = () => {
         <SubmitButton
           onClick={addNoteToList}
           isVisible={isFormVisible}
-          isDark={theme}
+          isDark={theme ? 1 : 0}
           type="button"
         >
           Add Note
         </SubmitButton>
         <SubmitButton
           isVisible={isFormVisible}
-          isDark={theme}
+          isDark={theme ? 1 : 0}
           type="button"
           onClick={closeForm}
         >
@@ -77,13 +77,13 @@ const NotesAppPage = () => {
     </AddNoteForm>
   );
   return (
-    <AppContainer isDark={theme}>
+    <AppContainer isDark={theme ? 1 : 0}>
       <Header />
       <NotesContainer>
         {renderAddNoteForm()}
         <ViewNotes>
-          <AddNoteCard isDark={theme}>
-            <AddIcon isDark={theme} src={Plus} />
+          <AddNoteCard isDark={theme ? 1 : 0}>
+            <AddIcon isDark={theme ? 1 : 0} src={Plus} />
           </AddNoteCard>
         </ViewNotes>
       </NotesContainer>
