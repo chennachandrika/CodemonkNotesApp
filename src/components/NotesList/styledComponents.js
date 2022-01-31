@@ -4,6 +4,7 @@ export const NotesCard = styled.div`
   color: ${(props) => (props.isDark ? "white" : "black")};
   border: 1px solid ${(props) => (props.isDark ? "white" : "black")};
   width: 200px;
+  max-width: 200px;
   height: 150px;
   border-radius: 10px;
   padding: 20px 20px;
@@ -12,6 +13,7 @@ export const NotesCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  overflow: auto;
 `;
 export const Icon = styled.img`
   filter: invert(${(props) => (props.isDark ? 1 : 0)});

@@ -66,11 +66,11 @@ export const ViewNotes = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
   margin-top: 30px;
-  max-width: 1000px;
+  max-width: 1200px;
 `;
 
 export const Text = styled.p``;
