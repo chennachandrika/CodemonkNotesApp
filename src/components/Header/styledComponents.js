@@ -11,6 +11,9 @@ export const HeaderContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 `;
 
 export const HeaderOptions = styled.div`

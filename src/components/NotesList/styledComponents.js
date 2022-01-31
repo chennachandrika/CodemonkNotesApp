@@ -3,8 +3,8 @@ export const NotesCard = styled.div`
   background-color: ${(props) => (props.isDark ? "black" : "white")};
   color: ${(props) => (props.isDark ? "white" : "black")};
   border: 1px solid ${(props) => (props.isDark ? "white" : "black")};
-  width: 200px;
-  max-width: 200px;
+  width: 250px;
+  max-width: 250px;
   height: 150px;
   border-radius: 10px;
   padding: 20px 20px;
@@ -13,7 +13,6 @@ export const NotesCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  overflow: auto;
 `;
 export const Icon = styled.img`
   filter: invert(${(props) => (props.isDark ? 1 : 0)});
@@ -22,9 +21,13 @@ export const Icon = styled.img`
 export const Title = styled.h2`
   color: ${(props) => (props.isDark ? "white" : "black")};
   margin-bottom: 10px;
+  max-height: 28px;
+  overflow: hidden;
 `;
 export const Text = styled.p`
   color: ${(props) => (props.isDark ? "white" : "black")};
+  max-height: 70px;
+  overflow: hidden;
 `;
 export const Options = styled.div`
   display: flex;
