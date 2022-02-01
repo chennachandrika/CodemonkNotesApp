@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
+
 import "./Modal.css";
 
 const Modal = (props) => {
+  const theme = useSelector((store) => store.entities.theme.isDarkMode);
   const closeOnEscapeKeyDown = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
       props.onClose();
@@ -24,21 +27,35 @@ const Modal = (props) => {
       timeout={{ enter: 0, exit: 300 }}
     >
       <div className="modal" onClick={props.onClose}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          className={`modal-content ${theme ? "darkMode" : "lightMode"} `}
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="modal-header">
-            <input value={props.note.title.noteTitle} className="modal-title" />
-          </div>
-          <div className="modal-body">
-            <textarea
-              value={props.note.title.noteText}
+            <input
+              style={{ fontSize: "25px", fontWeight: "bold" }}
+              value={props.note.title.noteTitle}
               className="modal-title"
             />
           </div>
+          <div className="modal-body">
+            <textarea
+              style={{ fontSize: "16px" }}
+              value={props.note.title.noteText}
+              className="modal-title note-text"
+            />
+          </div>
           <div className="modal-footer">
-            <button onClick={props.onClose} className="button">
+            <button
+              onClick={props.onClose}
+              className={`button ${theme ? `whiteButton` : `darkButton`}`}
+            >
               Close
             </button>
-            <button onClick={props.onClose} className="button">
+            <button
+              onClick={props.onClose}
+              className={`button ${theme ? `whiteButton` : `darkButton`}`}
+            >
               Save
             </button>
           </div>
