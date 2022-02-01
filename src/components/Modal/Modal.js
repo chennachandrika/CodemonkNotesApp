@@ -1,18 +1,34 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
+import { noteDataEdited } from "../../store/notesReducer";
 
 import "./Modal.css";
 
 const Modal = (props) => {
+  const { noteTitle, noteText } = props.note.title;
+  const [title, setTitle] = useState(noteTitle);
+  const [text, setText] = useState(noteText);
+  const dispatch = useDispatch();
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
   const closeOnEscapeKeyDown = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
       props.onClose();
     }
   };
-
+  const updateTitle = (event) => {
+    setTitle(event.target.value);
+  };
+  const updateText = (event) => {
+    setText(event.target.value);
+  };
+  const noteDataUpadate = () => {
+    dispatch(
+      noteDataEdited({ id: props.note.id, noteTitle: title, noteText: text })
+    );
+    props.onClose();
+  };
   useEffect(() => {
     document.body.addEventListener("keydown", closeOnEscapeKeyDown);
     return function cleanup() {
@@ -34,14 +50,16 @@ const Modal = (props) => {
           <div className="modal-header">
             <input
               style={{ fontSize: "25px", fontWeight: "bold" }}
-              value={props.note.title.noteTitle}
+              value={title}
+              onChange={updateTitle}
               className="modal-title"
             />
           </div>
           <div className="modal-body">
             <textarea
               style={{ fontSize: "16px" }}
-              value={props.note.title.noteText}
+              value={text}
+              onChange={updateText}
               className="modal-title note-text"
             />
           </div>
@@ -53,7 +71,7 @@ const Modal = (props) => {
               Close
             </button>
             <button
-              onClick={props.onClose}
+              onClick={noteDataUpadate}
               className={`button ${theme ? `whiteButton` : `darkButton`}`}
             >
               Save

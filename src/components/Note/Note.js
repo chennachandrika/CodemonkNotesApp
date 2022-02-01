@@ -17,7 +17,6 @@ const Note = ({ note }) => {
   const despatch = useDispatch();
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
   const deleteNote = (id) => () => {
-    console.log(id);
     despatch(noteRemoved({ id: id }));
   };
   return (

@@ -29,6 +29,23 @@ const slice = createSlice({
         completed: false
       });
     },
+    noteDataEdited: (notes, action) => {
+      notes.list = notes.list.map((note) => {
+        if (note.id === action.payload.id) {
+          const innerObj = note.title;
+          return {
+            ...note,
+            title: {
+              ...innerObj,
+              noteTitle: action.payload.noteTitle,
+              noteText: action.payload.noteText
+            }
+          };
+        } else {
+          return note;
+        }
+      });
+    },
     noteRemoved: (notes, action) => {
       notes.list = notes.list.filter((note) => note.id !== action.payload.id);
     }
@@ -37,6 +54,7 @@ const slice = createSlice({
 
 export const {
   noteAdded,
+  noteDataEdited,
   noteRemoved,
   notesApiRequest,
   notesDataReceived,
