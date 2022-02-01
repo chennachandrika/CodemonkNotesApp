@@ -3,7 +3,7 @@ import Note from "../Note";
 
 import { Text } from "./styledComponents";
 
-const NotesList = () => {
+const NotesList = ({ starred }) => {
   const notesList = useSelector((store) => store.entities.notes.list);
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
 
@@ -17,9 +17,12 @@ const NotesList = () => {
     console.log(starredOnes);
     return (
       <>
-        {notesList.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
+        {notesList.map((note) => {
+          if (starred === note.title.isStarred) {
+            return <Note key={note.id} note={note} />;
+          }
+          return null;
+        })}
       </>
     );
   };

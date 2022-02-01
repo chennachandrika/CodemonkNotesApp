@@ -20,8 +20,15 @@ const NotesAppPage = () => {
   const [noteText, setNoteText] = useState("");
   const [isFormVisible, setFormVisible] = useState(false);
   const dispatch = useDispatch();
+  const notesList = useSelector((store) => store.entities.notes.list);
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
   const isRequesting = useSelector((store) => store.entities.notes.loading);
+  const haveStarredNotes = notesList.filter(
+    (note) => note.title.isStarred === true
+  );
+  const haveNonStarredNotes = notesList.filter(
+    (note) => note.title.isStarred === false
+  );
   const viewForm = () => {
     setFormVisible(true);
   };
@@ -95,8 +102,21 @@ const NotesAppPage = () => {
       <Header />
       <NotesContainer>
         {renderAddNoteForm()}
+        {haveStarredNotes.length !== 0 && (
+          <>
+            <Text style={{ marginTop: "30px" }}>Starred Notes:</Text>
+            <ViewNotes>
+              <NotesList starred={true} />
+            </ViewNotes>
+          </>
+        )}
+        <Text style={{ marginTop: "30px" }}>
+          {haveNonStarredNotes.length !== 0 &&
+            haveStarredNotes.length !== 0 &&
+            "Other Notes:"}
+        </Text>
         <ViewNotes>
-          <NotesList />
+          <NotesList starred={false} />
         </ViewNotes>
       </NotesContainer>
     </AppContainer>
