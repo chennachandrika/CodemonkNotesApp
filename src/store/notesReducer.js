@@ -23,7 +23,7 @@ const slice = createSlice({
     },
     noteAdded: (notes, action) => {
       notes.loading = false;
-      notes.list.push({
+      notes.list.unshift({
         id: v4(),
         title: JSON.parse(action.payload.title),
         completed: false

@@ -11,6 +11,10 @@ const NotesList = () => {
     <Text isDark={theme ? 1 : 0}>Notes you add appear here</Text>
   );
   const showNotesList = () => {
+    const starredOnes = notesList.filter(
+      (note) => note.title.isStarred === true
+    );
+    console.log(starredOnes);
     return (
       <>
         {notesList.map((note) => (

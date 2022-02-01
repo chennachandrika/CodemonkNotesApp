@@ -43,11 +43,13 @@ export const Title = styled.h2`
   margin-bottom: 10px;
   max-height: 28px;
   overflow: hidden;
+  width: 220px;
 `;
 export const Text = styled.p`
   color: ${(props) => (props.isDark ? "white" : "black")};
   max-height: 70px;
   overflow: hidden;
+  max-width: 250px;
 `;
 export const Options = styled.div`
   display: flex;
