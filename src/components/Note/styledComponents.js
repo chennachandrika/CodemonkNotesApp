@@ -1,6 +1,18 @@
 import styled from "styled-components";
 
+export const OnHoverIcon = styled.img`
+  display: none;
+  filter: invert(${(props) => (props.isDark ? 1 : 0)});
+  cursor: pointer;
+  position: absolute;
+  width: 25px;
+  margin: 20px;
+  top: 0;
+  right: 0;
+`;
+
 export const NotesCard = styled.div`
+  position: relative;
   background-color: ${(props) => (props.isDark ? "black" : "white")};
   color: ${(props) => (props.isDark ? "white" : "black")};
   border: 1px solid ${(props) => (props.isDark ? "white" : "black")};
@@ -15,11 +27,17 @@ export const NotesCard = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   cursor: pointer;
+  &:hover {
+    ${OnHoverIcon} {
+      display: block;
+    }
+  }
 `;
 export const Icon = styled.img`
   filter: invert(${(props) => (props.isDark ? 1 : 0)});
   cursor: pointer;
 `;
+
 export const Title = styled.h2`
   color: ${(props) => (props.isDark ? "white" : "black")};
   margin-bottom: 10px;

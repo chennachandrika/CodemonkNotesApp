@@ -41,7 +41,8 @@ const NotesAppPage = () => {
     setFormVisible(false);
     const noteInfo = {
       noteTitle,
-      noteText
+      noteText,
+      isStarred: false
     };
     if (noteTitle && noteText) {
       dispatch(addNote({ title: JSON.stringify(noteInfo) }));

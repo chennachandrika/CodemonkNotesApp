@@ -46,6 +46,22 @@ const slice = createSlice({
         }
       });
     },
+    noteStarModified: (notes, action) => {
+      notes.list = notes.list.map((note) => {
+        if (note.id === action.payload.id) {
+          const innerObj = note.title;
+          return {
+            ...note,
+            title: {
+              ...innerObj,
+              isStarred: action.payload.isStarred
+            }
+          };
+        } else {
+          return note;
+        }
+      });
+    },
     noteRemoved: (notes, action) => {
       notes.list = notes.list.filter((note) => note.id !== action.payload.id);
     }
@@ -55,6 +71,7 @@ const slice = createSlice({
 export const {
   noteAdded,
   noteDataEdited,
+  noteStarModified,
   noteRemoved,
   notesApiRequest,
   notesDataReceived,
