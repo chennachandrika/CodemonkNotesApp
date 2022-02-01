@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeNote, noteRemoved } from "../../store/notesReducer";
-import {
-  NotesCard,
-  Icon,
-  Title,
-  Text,
-  Options,
-  Content
-} from "./styledComponents";
-import Del from "../../assests/Delete.png";
+import { useSelector } from "react-redux";
+import Note from "../Note";
+
+import { Text } from "./styledComponents";
 
 const NotesList = () => {
-  const despatch = useDispatch();
   const notesList = useSelector((store) => store.entities.notes.list);
   const theme = useSelector((store) => store.entities.theme.isDarkMode);
-  const deleteNote = (id) => () => {
-    console.log(id);
-    despatch(noteRemoved({ id: id }));
-  };
+
   const noNotesList = () => (
     <Text isDark={theme ? 1 : 0}>Notes you add appear here</Text>
   );
@@ -26,19 +14,7 @@ const NotesList = () => {
     return (
       <>
         {notesList.map((note) => (
-          <NotesCard isDark={theme ? 1 : 0} key={note.id}>
-            <Content>
-              <Title isDark={theme ? 1 : 0}>{note.title.noteTitle}</Title>
-              <Text isDark={theme ? 1 : 0}>{note.title.noteText}</Text>
-            </Content>
-            <Options>
-              <Icon
-                onClick={deleteNote(note.id)}
-                isDark={theme ? 1 : 0}
-                src={Del}
-              />
-            </Options>
-          </NotesCard>
+          <Note key={note.id} note={note} />
         ))}
       </>
     );
@@ -50,7 +26,6 @@ const NotesList = () => {
       return noNotesList();
     }
   };
-  console.log(notesList);
   return <>{renderNotesList()}</>;
 };
 
